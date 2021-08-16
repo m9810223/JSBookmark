@@ -11,16 +11,13 @@ console.log('印出結構化資料與 meta tag');
   schema = object_flatter(schema, 'schema');
   console.warn('*** schema', schema);
 
-  const metas = (() =>
-    Array.from(document.querySelectorAll('meta'), (e) => {
+  const metas = (() => {
+    const result = {};
+    document.querySelectorAll('meta').forEach((e) => {
       const s = {
         property: e.getAttribute('property'),
         name: e.getAttribute('name'),
         'http-equiv': e.getAttribute('http-equiv'),
-      };
-      const t = {
-        content: e.getAttribute('content'),
-        textContent: e.textContent,
       };
       let selector = '';
       for (const [k, v] of Object.entries(s)) {
@@ -29,6 +26,11 @@ console.log('印出結構化資料與 meta tag');
           break;
         }
       }
+
+      const t = {
+        content: e.getAttribute('content'),
+        textContent: e.textContent,
+      };
       let attr = '';
       let text = '';
       for (const [k, v] of Object.entries(t)) {
@@ -38,14 +40,16 @@ console.log('印出結構化資料與 meta tag');
           break;
         }
       }
-      const re = [selector + attr, text];
-      return re;
-    }).reduce((acc, cur) => {
-      let [k, v] = cur;
-      while (k in acc) {
-        k = k + '_d';
+
+      selector += attr;
+
+      if (!(selector in result)) {
+        result[selector] = [];
       }
-      return { ...acc, [k]: v };
-    }, {}))();
+      result[selector].push(text);
+    });
+
+    return result;
+  })();
   console.warn('*** metas', metas);
 })();
