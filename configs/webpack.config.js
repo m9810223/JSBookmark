@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
       const extname = path.extname(file);
       const file_resolved = path.resolve(src_dir, file);
       return (
-        file !== 'utils.js' &&
+        // file !== 'utils.js' &&
         extname === '.js' &&
         fs.lstatSync(file_resolved).isFile()
       );

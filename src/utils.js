@@ -1,18 +1,45 @@
 const object_flatter = (obj, prefix = 'object_name') => {
-  if (!obj) return;
-  const re = {};
+  if (!obj) {
+    return;
+  }
+  const result = {};
+  const recorded = new Set();
+  const others = {};
   const recur = (prefix, obj) => {
     Object.entries(obj).forEach(([k, v]) => {
-      k = k.match(/^[a-zA-Z]+$/) ? `.${k}` : `['${k}']`;
+      if (!v || k.includes(prefix)) {
+        return;
+      }
+      k = k.match(/^[a-zA-Z_]+$/) ? `.${k}` : `['${k.replace(/'/g, "\\'")}']`;
       k = `${prefix}${k}`;
-      if (v.constructor.name !== 'Object') {
-        re[k] = v;
-      } else {
+      let type = '';
+      try {
+        type = v?.constructor.name;
+      } catch {
+        return;
+      }
+      if (['Window'].includes(type)) {
+        // return;
+      } else if (['Array', 'Object'].includes(type)) {
         recur(k, v);
+      } else if (['String', 'Number', 'Boolean'].includes(type)) {
+        if (!recorded.has(v)) {
+          result[k] = v;
+          recorded.add(v);
+        }
+      } else {
+        if (!(type in others)) {
+          others[type] = [];
+        }
+        others[type].push(String(v));
       }
     });
   };
   recur(prefix, obj);
-  return re;
+  result.others = others;
+  return result;
 };
+
+// console.warn(object_flatter(window, 'window'));
+
 export { object_flatter };

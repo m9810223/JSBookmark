@@ -1,13 +1,12 @@
 import { object_flatter } from './utils';
+
 console.log('印出結構化資料與 meta tag');
+
 (() => {
-  let schema = ((
-    selector = 'script[type="application/ld+json"]',
-    type_filter = 'Product'
-  ) =>
-    Array.from(document.querySelectorAll(selector), (s) =>
-      JSON.parse(s.textContent.replace(/\s/g, ''))
-    ).find((s) => s['@type'] === type_filter))();
+  let schema = ((selector = 'script[type="application/ld+json"]', type_filter = 'Product') =>
+    Array.from(document.querySelectorAll(selector), (s) => JSON.parse(s.textContent.replace(/\s/g, ''))).find(
+      (s) => s['@type'] === type_filter
+    ))();
 
   schema = object_flatter(schema, 'schema');
   console.warn('*** schema', schema);
@@ -43,7 +42,7 @@ console.log('印出結構化資料與 meta tag');
       return re;
     }).reduce((acc, cur) => {
       let [k, v] = cur;
-      if (k in acc) {
+      while (k in acc) {
         k = k + '_d';
       }
       return { ...acc, [k]: v };
