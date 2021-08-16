@@ -1,3 +1,0 @@
-```javascript
-javascript: console.log("確認埋 code 狀態"),(()=>{const e=window.tagtoo_advertiser_id,o=[...document.querySelectorAll("script")].filter((e=>e.src.includes("//ad.tagtoo.co/media/ad/track.js"))),t=o.length,a=o.map((e=>e.parentNode.tagName.toLowerCase())).join(", "),d=(e&&1===t?`成功，ecid: ${e}`:`失敗，埋code次數: ${t}`)+(t?`，在：${a}`:"")+"。";window.alert(d)})();
-```
