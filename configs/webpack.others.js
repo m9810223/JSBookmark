@@ -25,14 +25,10 @@ module.exports = (env, argv) => {
 
   if (env.all) {
     const files = fs.readdirSync(src_dir).filter((file) => {
-      console.log(file)
+      console.log(file);
       const extname = path.extname(file);
       const file_resolved = path.resolve(src_dir, file);
-      return (
-        file !== 'utils.js' &&
-        extname === '.js' &&
-        fs.lstatSync(file_resolved).isFile()
-      );
+      return file !== 'utils.js' && extname === '.js' && fs.lstatSync(file_resolved).isFile();
     });
     return files.map((f) => default_config(f));
   }

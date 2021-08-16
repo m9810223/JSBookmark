@@ -7,9 +7,7 @@ console.log('確認埋 code 狀態');
   const l = ss.length;
   const pos = ss.map((s) => s.parentNode.tagName.toLowerCase()).join(', ');
   const result =
-    (ecid && l === 1 ? `成功，ecid: ${ecid}` : `失敗，埋code次數: ${l}`) +
-    (l ? `，在：${pos}` : '') +
-    '。';
+    (ecid && l === 1 ? `成功，ecid: ${ecid}` : `失敗，埋code次數: ${l}`) + (l ? `，在：${pos}` : '') + '。';
 
   // const div = document.createElement('div');
   // div.style =
