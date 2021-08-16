@@ -3,9 +3,9 @@ const fs = require('fs');
 
 const dist_dir = path.resolve(`${__dirname}/../dist`);
 const bookmark_dir = path.resolve(`${__dirname}/../bookmarks⬅️`);
-if (!fs.existsSync(bookmark_dir)) {
-  fs.mkdirSync(bookmark_dir);
-}
+
+fs.rmdirSync(bookmark_dir, { recursive: true });
+fs.mkdirSync(bookmark_dir);
 
 const create_md = (script) => {
   return '```javascript\njavascript: ' + script + '\n```';
@@ -31,11 +31,7 @@ ${rows.join('\n')}
 
 const files = fs
   .readdirSync(dist_dir)
-  .filter(
-    (file) =>
-      file.endsWith('.js') &&
-      fs.lstatSync(path.resolve(dist_dir, file)).isFile()
-  )
+  .filter((file) => file.endsWith('.js') && fs.lstatSync(path.resolve(dist_dir, file)).isFile())
   .map((file) => path.resolve(dist_dir, file));
 
 const rows = [];

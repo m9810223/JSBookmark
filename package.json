@@ -7,7 +7,7 @@
     "webpack": "webpack -c ./configs/webpack.config.js --env all",
     "dev": "webpack serve -c ./configs/webpack.config.js --env all",
     "dev-others": "webpack serve -c ./configs/webpack.others.js --env all",
-    "deploy": "npm run webpack && node ./scripts/build_bookmarks.js"
+    "deploy": "rm -r dist && npm run webpack && node ./scripts/build_bookmarks.js"
   },
   "repository": {
     "type": "git",
