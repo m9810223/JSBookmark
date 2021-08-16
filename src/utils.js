@@ -1,4 +1,6 @@
 const object_flatter = (obj, prefix = 'object_name') => {
+  console.log('object_flatter', 'prefix:', prefix);
+
   if (!obj) {
     return;
   }
