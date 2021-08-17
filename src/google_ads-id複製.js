@@ -3,11 +3,12 @@
     const textArea = document.createElement('textarea');
     textArea.value = text;
     // copy
-    document.appendChild(textArea);
+    const body = document.body;
+    body.appendChild(textArea);
     textArea.focus();
     textArea.select();
     document.execCommand('copy');
-    document.body.removeChild(textArea);
+    body.removeChild(textArea);
   };
 
   const targetText = [...document.querySelectorAll('textarea')]
