@@ -36,9 +36,9 @@ const object_flattener = (obj, prefix = 'object_name') => {
         // return;
       } else {
         if (!(type in others)) {
-          others[type] = [];
+          others[type] = {};
         }
-        others[type].push(String(v));
+        others[type][k] = String(v);
       }
     });
   };
