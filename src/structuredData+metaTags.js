@@ -1,4 +1,4 @@
-import { object_flatter } from './utils';
+import { object_flattener } from './utils';
 
 console.log('印出結構化資料與 meta tag');
 
@@ -8,7 +8,7 @@ console.log('印出結構化資料與 meta tag');
       (s) => s['@type'] === type_filter
     ))();
 
-  schema = object_flatter(schema, 'schema');
+  schema = object_flattener(schema, 'schema');
   console.warn('*** schema', schema);
 
   const metas = (() => {
