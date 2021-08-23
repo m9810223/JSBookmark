@@ -49,6 +49,6 @@ const object_flattener = (obj, prefix = 'object_name') => {
   return result;
 };
 
-console.warn(object_flattener(window, 'window'));
+// console.warn(object_flattener(window, 'window'));
 
 export { object_flattener };
