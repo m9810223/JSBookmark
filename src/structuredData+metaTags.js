@@ -14,7 +14,7 @@ console.log('印出結構化資料與 meta tag');
   const metas = (() => {
     const result = {};
     document.querySelectorAll('meta').forEach((e) => {
-      const s = ['property', 'name', 'http-equiv', 'itemprop', 'charset'].reduce((acc, cur, idx) => {
+      const s = ['property', 'name', 'http-equiv', 'itemprop', 'charset'].reduce((acc, cur) => {
         const [k, v] = [cur, e.getAttribute(cur)];
         return { ...acc, [k]: v };
       }, {});
@@ -26,7 +26,7 @@ console.log('印出結構化資料與 meta tag');
         }
       }
 
-      const t = ['content', 'textContent'].reduce((acc, cur, idx) => {
+      const t = ['content', 'textContent'].reduce((acc, cur) => {
         const [k, v] = [cur, e.getAttribute(cur)];
         return { ...acc, [k]: v };
       }, {});
