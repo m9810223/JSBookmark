@@ -14,11 +14,10 @@ console.log('印出結構化資料與 meta tag');
   const metas = (() => {
     const result = {};
     document.querySelectorAll('meta').forEach((e) => {
-      const s = {
-        property: e.getAttribute('property'),
-        name: e.getAttribute('name'),
-        'http-equiv': e.getAttribute('http-equiv'),
-      };
+      const s = ['property', 'name', 'http-equiv', 'itemprop', 'charset'].reduce((acc, cur, idx) => {
+        const [k, v] = [cur, e.getAttribute(cur)];
+        return { ...acc, [k]: v };
+      }, {});
       let selector = '';
       for (const [k, v] of Object.entries(s)) {
         if (v) {
@@ -27,10 +26,10 @@ console.log('印出結構化資料與 meta tag');
         }
       }
 
-      const t = {
-        content: e.getAttribute('content'),
-        textContent: e.textContent,
-      };
+      const t = ['content', 'textContent'].reduce((acc, cur, idx) => {
+        const [k, v] = [cur, e.getAttribute(cur)];
+        return { ...acc, [k]: v };
+      }, {});
       let attr = '';
       let text = '';
       for (const [k, v] of Object.entries(t)) {
@@ -44,9 +43,9 @@ console.log('印出結構化資料與 meta tag');
       selector += attr;
 
       if (!(selector in result)) {
-        result[selector] = [];
+        result[selector] = '';
       }
-      result[selector].push(text);
+      result[selector] += text + ' ⬅️ ';
     });
 
     return result;
