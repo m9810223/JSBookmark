@@ -41,11 +41,13 @@ console.log('印出結構化資料與 meta tag');
       }
 
       selector += attr;
-
       if (!(selector in result)) {
-        result[selector] = '';
+        result[selector] = text;
+      } else if (result[selector].constructor.name !== 'Array') {
+        result[selector] = [result[selector], text];
+      } else {
+        result[selector].push(text);
       }
-      result[selector] += text + ' ⬅️ ';
     });
 
     return result;
