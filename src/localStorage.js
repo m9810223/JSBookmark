@@ -23,6 +23,5 @@ import { object_flattener } from './utils';
   const lsf = object_flattener(ls_obj, 'localStorage');
 
   console.warn('*** localStorage\n', ls_obj);
-  console.log(lsf);
   console.table(lsf);
 })();
