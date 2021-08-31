@@ -23,10 +23,10 @@ const object_flattener = (obj, prefix = 'object_name') => {
         return;
       }
 
-      if (recorded.has(v)) {
-        return;
-      }
-      recorded.add(v);
+      // if (recorded.has(v)) {
+      //   return;
+      // }
+      // recorded.add(v);
 
       if (['String', 'Number', 'Boolean'].includes(type)) {
         result[k] = v;
