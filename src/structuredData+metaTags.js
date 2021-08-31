@@ -9,7 +9,7 @@ console.log('印出結構化資料與 meta tag');
     ))();
 
   schema = object_flattener(schema, 'schema');
-  console.warn('*** schema', schema);
+  console.warn('*** schema\n', schema);
 
   const metas = (() => {
     const result = {};
@@ -52,5 +52,5 @@ console.log('印出結構化資料與 meta tag');
 
     return result;
   })();
-  console.warn('*** metas', metas);
+  console.warn('*** metas\n', metas);
 })();
