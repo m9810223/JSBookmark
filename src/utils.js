@@ -13,7 +13,7 @@ const object_flattener = (obj, prefix = 'object_name') => {
         return;
       }
 
-      k = k.match(/^[a-zA-Z_]+$/) ? `.${k}` : `['${k.replace(/'/g, "\\'")}']`;
+      k = k.match(/^[a-zA-Z_]/) ? `.${k}` : `['${k.replace(/'/g, "\\'")}']`;
       k = `${prefix}${k}`;
 
       let type = '';
