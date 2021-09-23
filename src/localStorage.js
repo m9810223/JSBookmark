@@ -24,4 +24,6 @@ import { object_flattener } from './utils';
 
   console.warn('*** localStorage\n', ls_obj);
   // console.table(lsf);
+
+  console.warn('*** CartInfo\n', ls_obj.CartInfo);
 })();
