@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const base_dir = path.resolve(`${__dirname}/..`);
 const src_dir = `${base_dir}/src`;
-const dist_dir = `${base_dir}/dist/js`;
+const dist_dir = `${base_dir}/dist`;
 
 module.exports = (env, argv) => {
   const default_config = (fn) => {

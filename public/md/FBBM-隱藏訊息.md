@@ -1,0 +1,3 @@
+```javascript
+javascript: console.log("移除 fb bm 的 影響網站事件的重大變更 ... "),setInterval((()=>{const e=document.querySelector(".eyzlfctb ._6_-k")?.parentNode;(e=>{e&&(e.remove(),console.warn("*** remove fb banner"))})(e)}),3e3);
+```
