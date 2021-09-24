@@ -1,14 +1,28 @@
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
 const dist_dir = path.resolve(`${__dirname}/../dist`);
-const bookmark_dir = path.resolve(`${__dirname}/../bookmarks⬅️`);
 
-fs.rmdirSync(bookmark_dir, { recursive: true });
-fs.mkdirSync(bookmark_dir);
+const dist_js = `${dist_dir}/js`;
+
+const dist_html = `${dist_dir}/html`;
+const dist_md = `${dist_dir}/md`;
+const dist_all_bookmarks = `${dist_dir}/all_bookmarks⬅️.html`;
+
+const cleanup = (...dirs) => {
+  dirs.forEach((dir) => {
+    fs.rmdirSync(dir, { recursive: true });
+    fs.mkdirSync(dir);
+  });
+};
+cleanup(dist_html, dist_md);
+
+const create_html = (script) => {
+  return `javascript: ${script}`;
+};
 
 const create_md = (script) => {
-  return '```javascript\njavascript: ' + script + '\n```';
+  return `\`\`\`javascript\njavascript: ${script}\n\`\`\``;
 };
 
 const escape = (data) => {
@@ -30,18 +44,18 @@ ${rows.join('\n')}
 };
 
 const files = fs
-  .readdirSync(dist_dir)
-  .filter((file) => file.endsWith('.js') && fs.lstatSync(path.resolve(dist_dir, file)).isFile())
-  .map((file) => path.resolve(dist_dir, file));
+  .readdirSync(dist_js)
+  .filter((file) => file.endsWith('.js') && fs.lstatSync(path.resolve(dist_js, file)).isFile())
+  .map((file) => path.resolve(dist_js, file));
 
 const rows = [];
-for (file of files) {
+
+files.forEach((file) => {
   const script = fs.readFileSync(file, 'utf8');
   const basename = path.basename(file, path.extname(file));
   rows.push(create_row(script, basename));
-  const newname = basename + '.md';
-  fs.writeFileSync(path.resolve(bookmark_dir, newname), create_md(script));
-}
+  fs.writeFileSync(`${dist_html}/${basename}.html`, create_html(script));
+  fs.writeFileSync(`${dist_md}/${basename}.md`, create_md(script));
+});
 
-const bookmark = create_bookmark(rows);
-fs.writeFileSync(path.resolve(bookmark_dir, 'JSBookmark.html'), bookmark);
+fs.writeFileSync(dist_all_bookmarks, create_bookmark(rows));

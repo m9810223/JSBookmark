@@ -1,8 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 
-const src_dir = path.resolve(`${__dirname}/../src`);
-const dist_dir = path.resolve(`${__dirname}/../dist`);
+const base_dir = path.resolve(`${__dirname}/..`);
+const src_dir = `${base_dir}/src`;
+const dist_dir = `${base_dir}/dist/js`;
 
 module.exports = (env, argv) => {
   const default_config = (fn) => {

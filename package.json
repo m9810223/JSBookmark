@@ -1,34 +1,25 @@
 {
-  "name": "jss",
   "version": "1.0.0",
-  "description": "js script for browser bookmarks",
-  "main": "jscapo-91pu.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m9810223/JSBookmark.git"
+  },
   "scripts": {
     "webpack": "webpack -c ./configs/webpack.config.js --env all",
     "dev": "webpack serve -c ./configs/webpack.config.js --env all",
     "dev-others": "webpack serve -c ./configs/webpack.others.js --env all",
     "deploy": "if [ -s dist ]; then rm -r dist; fi && npm run webpack && node ./scripts/build_bookmarks.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/m9810223/JSS.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/m9810223/JSS/issues"
-  },
-  "homepage": "https://github.com/m9810223/JSS#readme",
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "babel-loader": "^8.2.2",
+    "fs": "0.0.1-security",
+    "glob-parent": "^5.1.2",
+    "set-value": ">=4.0.1",
     "webpack": "^5.46.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {
-    "fs": "0.0.1-security",
-    "glob-parent": "^5.1.2"
+    "webpack-dev-server": "^4.2.1"
   }
 }

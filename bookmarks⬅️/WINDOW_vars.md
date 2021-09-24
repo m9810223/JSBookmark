@@ -1,3 +1,0 @@
-```javascript
-javascript: (()=>{"use strict";console.warn("*** window",((e,n="object_name")=>{if(!e)return;const r={},t=(new Set,{}),c=(e,n)=>{Object.entries(n).forEach((([n,i])=>{if(!i||n.includes(e))return;n=n.match(/^[a-zA-Z_]/)?`.${n}`:`['${n.replace(/'/g,"\\'")}']`,n=`${e}${n}`;let o="";try{o=i?.constructor.name}catch{return}["String","Number","Boolean"].includes(o)?r[n]=i:["Object","Array"].includes(o)?c(n,i):["Window"].includes(o)||(o in t||(t[o]={}),t[o][n]=String(i))}))};return c(n,e),r.others=t,r})(window,"window"))})();
-```

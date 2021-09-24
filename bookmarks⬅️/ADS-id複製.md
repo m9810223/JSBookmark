@@ -1,3 +1,0 @@
-```javascript
-javascript: (e=>{const t=document.createElement("textarea");t.value=e;const c=document.body;c.appendChild(t),t.focus(),t.select(),document.execCommand("copy"),c.removeChild(t)})([...document.querySelectorAll("textarea")].slice(-1)[0].getAttribute("aria-label").match(/AW-\d+\/(.*)'/).pop());
-```
