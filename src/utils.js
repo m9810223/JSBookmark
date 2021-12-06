@@ -1,4 +1,6 @@
-const object_flattener = (obj, prefix = 'object_name') => {
+const object_flattener = (obj, prefix = 'object_name', addRecur = []) => {
+  // e.g. console.warn(object_flattener(window, 'window', ['t']));
+
   if (!obj) {
     return;
   }
@@ -23,14 +25,14 @@ const object_flattener = (obj, prefix = 'object_name') => {
         return;
       }
 
-      // if (recorded.has(v)) {
-      //   return;
-      // }
-      // recorded.add(v);
+      if (recorded.has(v)) {
+        return;
+      }
+      recorded.add(v);
 
       if (['String', 'Number', 'Boolean'].includes(type)) {
         result[k] = v;
-      } else if (['Object', 'Array'].includes(type)) {
+      } else if (['Object', 'Array', ...addRecur].includes(type)) {
         recur(k, v);
       } else if (['Window'].includes(type)) {
         // return;
@@ -48,7 +50,5 @@ const object_flattener = (obj, prefix = 'object_name') => {
   result.others = others;
   return result;
 };
-
-// console.warn(object_flattener(window, 'window'));
 
 export { object_flattener };
